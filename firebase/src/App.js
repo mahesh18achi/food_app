@@ -21,6 +21,9 @@ const RequireAuth=({children})=>{
    return currentUser?children:<Navigate to="/"/>
 }
 
+const userAuth=({children})=>{
+  return currentUser.email==='maheshgumma18@gmail.com'?children:<Navigate to="/home"/>
+}
 
 
   return (
@@ -31,7 +34,7 @@ const RequireAuth=({children})=>{
 
      <Route path="/home" element={<RequireAuth><Home/></RequireAuth>}/>
       <Route path="/" element={<Login/>}/>
-      <Route path="/users" element={<Users/>}/>
+      <Route path="/users" element={<userAuth><Users/></userAuth>}/>
       <Route path="/product" element={<Product/>}/>
       <Route path="/productlist" element={<ProductListByCategory/>}/>
       <Route path="/cart" element={<Cart/>}/>
