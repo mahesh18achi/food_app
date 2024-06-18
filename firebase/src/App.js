@@ -16,13 +16,13 @@ import Register from './components/Register';
 function App() {
 
 const {currentUser}=useContext(AuthContext)
-
+console.log(currentUser.email)
 const RequireAuth=({children})=>{
    return currentUser?children:<Navigate to="/"/>
 }
 
-const userAuth=({children})=>{
-  return currentUser.email==='maheshgumma18@gmail.com'?children:<Navigate to="/home"/>
+const AdminAuth=({children})=>{
+  return currentUser.email!=='maheshgumma18@gmail.com'?<Navigate to="/home"/>:children
 }
 
 
@@ -34,7 +34,7 @@ const userAuth=({children})=>{
 
      <Route path="/home" element={<RequireAuth><Home/></RequireAuth>}/>
       <Route path="/" element={<Login/>}/>
-      <Route path="/users" element={<userAuth><Users/></userAuth>}/>
+      <Route path="/users" element={<AdminAuth><Users/></AdminAuth>}/>
       <Route path="/product" element={<Product/>}/>
       <Route path="/productlist" element={<ProductListByCategory/>}/>
       <Route path="/cart" element={<Cart/>}/>
